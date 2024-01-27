@@ -1,0 +1,108 @@
+/* CardSlider.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  @apply m-0 p-0 box-border;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  @apply min-h-screen flex items-center justify-center bg-gray-300;
+}
+
+.slide-container {
+  @apply max-w-screen-xl w-full p-8;
+}
+
+.slide-content {
+  @apply mx-10 overflow-hidden rounded-lg;
+}
+
+.card {
+  @apply rounded-lg bg-white;
+}
+
+.image-content,
+.card-content {
+  @apply flex flex-col items-center p-4;
+}
+
+.image-content {
+  @apply relative row-gap-5 py-6;
+}
+
+.overlay {
+  @apply absolute left-0 top-0 h-full w-full bg-blue-500 rounded-lg rounded-tl-none;
+}
+
+.overlay::before,
+.overlay::after {
+  @apply absolute right-0 bottom-[-40px] h-40 w-40 bg-blue-500;
+}
+
+.overlay::after {
+  @apply rounded-none rounded-bl-lg bg-white;
+}
+
+.card-image {
+  @apply relative h-32 w-32 rounded-full bg-white p-1;
+}
+
+.card-image .card-img {
+  @apply h-full w-full object-cover rounded-full border-4 border-blue-500;
+}
+
+.name {
+  @apply text-lg font-semibold text-gray-700;
+}
+
+.description {
+  @apply text-sm text-gray-700 text-center;
+}
+
+.button {
+  @apply border-none text-lg text-white py-2 px-4 bg-blue-500 rounded-md my-4 cursor-pointer transition-all duration-300 ease-in-out;
+}
+
+.button:hover {
+  @apply bg-blue-700;
+}
+
+.swiper-navBtn {
+  @apply text-blue-700 transition-colors duration-300 ease-in-out;
+}
+
+.swiper-navBtn:hover {
+  @apply text-blue-500;
+}
+
+.swiper-navBtn::before,
+.swiper-navBtn::after {
+  @apply text-4xl;
+}
+
+.swiper-button-next {
+  @apply right-0;
+}
+
+.swiper-button-prev {
+  @apply left-0;
+}
+
+.swiper-pagination-bullet {
+  @apply bg-blue-700 opacity-100;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-blue-500;
+}
+
+@media screen and (max-width: 768px) {
+  .slide-content {
+    @apply mx-2;
+  }
+
+  .swiper-navBtn {
+    @apply hidden;
+  }
+}
