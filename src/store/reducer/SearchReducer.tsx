@@ -3,10 +3,12 @@ import axios from "axios";
 
 interface BookState {
   searchBooks: {
+    id: string;
     title: string;
     categories: string[];
     thumbnail: string;
-    id: string;
+    authors: string[];
+    description: string;
   }[];
   loading: boolean;
   error: string | null;
@@ -17,7 +19,6 @@ const initialState: BookState = {
   loading: false,
   error: null,
 };
-
 interface ApiResponse {
   items: {
     id: string;
@@ -27,7 +28,8 @@ interface ApiResponse {
       imageLinks: {
         thumbnail: string;
       };
-      
+      authors: string[];
+      description: string;
     };
   }[];
 }
@@ -59,12 +61,12 @@ export const SearchReducer = createSlice({
       })
       .addCase(fetchSearchBooks.fulfilled, (state, action) => {
         state.searchBooks = action.payload.items.map((item) => ({
-          id: item.id,
-          title: item.volumeInfo.title || "",
-          categories: item.volumeInfo.categories || [],
-          thumbnail: item.volumeInfo.imageLinks
-            ? item.volumeInfo.imageLinks.thumbnail
-            : "No Thumbnail",
+          id: item.id||"",
+          title: item.volumeInfo.title||"",
+          categories: item.volumeInfo.categories||"",
+          description: item.volumeInfo.description||"",
+          thumbnail: item.volumeInfo.imageLinks.thumbnail||"",
+          authors: item.volumeInfo.authors||"",
         }));
         state.loading = false;
       })

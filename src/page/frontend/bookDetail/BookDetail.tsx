@@ -9,7 +9,6 @@ import Slider from "./Slider";
 import { fetchSearchBooks } from "../../../store/reducer/SearchReducer";
 
 export default function BookDetail() {
-  
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const thrillerBooks = useAppSelector((state) => state.book.thrillerBooks);
@@ -19,13 +18,14 @@ export default function BookDetail() {
   useEffect(() => {
     dispatch(fetchThrillerBooks());
     dispatch(fetchAdventureBooks());
-  }, [dispatch]);
-  
+    if (id) {
+      dispatch(fetchSearchBooks(id));
+    }
+  }, [dispatch, id]);
 
-  const selectedBook = [...thrillerBooks, ...adventureBooks].find(
+  const selectedBook = [...thrillerBooks, ...adventureBooks, ...searches].find(
     (book) => book.id === id
   );
-
 
   return (
     <>
@@ -33,17 +33,17 @@ export default function BookDetail() {
         <div>
           <div>
             <span className="text-amber-500 text-3xl font-bold font-['Hanken Grotesk'] leading-[60px] tracking-tight">
-              {selectedBook?.categories}:
+              {selectedBook?.categories || ""}:
               <br />
             </span>
             <span className="text-blue-950 w-fit text-2xl md:text-3xl lg:text-4xl font-bold font-'Hanken Grotesk' leading-[40px] md:leading-[50px] lg:leading-[60px] tracking-tight">
-              {selectedBook?.title}
+              {selectedBook?.title || ""}
             </span>
             <p className="text-blue-950 text-md my-3 font-semibold font-['Hanken Grotesk'] leading-normal tracking-tight">
-              A BOOK BY {selectedBook?.authors[0]}
+              A BOOK BY {selectedBook?.authors || ""}
             </p>
             <p className=" text-slate-500 mt-3 text-sm font-normal font-['Open Sans'] leading-loose">
-              {selectedBook?.description}
+              {selectedBook?.description || ""}
             </p>
             <button className="text-white mt-10 bg-blue-700 py-4 px-2 rounded-md font-bold text-sm">
               See on Google Books
@@ -53,7 +53,7 @@ export default function BookDetail() {
         <div className="">
           <div className="w-[300px] lg:w-[380px] h-[350px] lg:h-[450px] flex justify-center items-center mt-2 lg:mt-0  bg-gray-200">
             <img
-              src={selectedBook?.thumbnail}
+              src={selectedBook?.thumbnail || ""}
               alt=""
               className="w-[200px] lg:w-[250px] h-[320px] lg:h-[374px] "
             />
@@ -69,17 +69,3 @@ export default function BookDetail() {
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
