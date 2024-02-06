@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import instance from "../../utilites/Instance";
 
 interface BookState {
-  thrillerBooks: {
+  popularBooks: {
     id: string;
     title: string;
     categories: string[];
@@ -10,7 +10,7 @@ interface BookState {
     authors: string[];
     description: string;
   }[];
-  AdventureBooks: {
+  bestBooks: {
     id: string;
     title: string;
     categories: string[];
@@ -23,8 +23,8 @@ interface BookState {
 }
 
 const initialState: BookState = {
-  thrillerBooks: [],
-  AdventureBooks: [],
+  popularBooks: [],
+  bestBooks: [],
   loading: false,
   error: null,
 };
@@ -46,15 +46,13 @@ interface ApiResponse {
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-const bestApiUrl = `https://www.googleapis.com/books/v1/volumes?q=thriller&key=${apiKey}&maxResults=3`;
-
-const booksApiUrl = `https://www.googleapis.com/books/v1/volumes?q=adventure&key=${apiKey}&maxResults=6`;
-
-export const fetchThrillerBooks = createAsyncThunk(
-  "bookThrillerOption/fetchBooksThrillerOption",
+export const fetchPopularBooks = createAsyncThunk(
+  "bookPopularOption/fetchBooksPopularOption",
   async () => {
     try {
-      const response = await axios.get(booksApiUrl);
+      const response = await instance(
+        `volumes?q=horror&key=${apiKey}&maxResults=12`
+      );
       return response.data as ApiResponse;
     } catch (error) {
       console.error("Error fetching thriller books:", error);
@@ -63,11 +61,13 @@ export const fetchThrillerBooks = createAsyncThunk(
   }
 );
 
-export const fetchAdventureBooks = createAsyncThunk<ApiResponse>(
-  "bookAdventureOption/fetchBooksAdventureOption",
+export const fetchBestBooks = createAsyncThunk<ApiResponse>(
+  "bookBestOption/fetchBestBooksOption",
   async () => {
     try {
-      const response = await axios.get(bestApiUrl);
+      const response = await instance(
+        `volumes?q=thriller&key=${apiKey}&maxResults=3`
+      );
       return response.data;
     } catch (error) {
       console.error("Error fetching adventure books:", error);
@@ -82,42 +82,50 @@ export const BookReducer = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchThrillerBooks.pending, (state) => {
+      .addCase(fetchPopularBooks.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchThrillerBooks.fulfilled, (state, action) => {
+      .addCase(fetchPopularBooks.fulfilled, (state, action) => {
         state.loading = false;
-        state.thrillerBooks = action.payload.items.map((item) => ({
-          id: item.id,
-          title: item.volumeInfo.title,
-          categories: item.volumeInfo.categories,
-          authors: item.volumeInfo.authors,
-          description: item.volumeInfo.description,
-          thumbnail: item.volumeInfo.imageLinks.thumbnail,
-        }));
+        if (state.bestBooks) {
+          state.popularBooks = action.payload?.items?.map((item) => ({
+            id: item.id,
+            title: item.volumeInfo.title,
+            categories: item.volumeInfo.categories,
+            authors: item.volumeInfo.authors,
+            description: item.volumeInfo.description,
+            thumbnail: item.volumeInfo.imageLinks?.thumbnail,
+          }));
+        } else {
+          state.popularBooks = [];
+        }
       })
-      .addCase(fetchThrillerBooks.rejected, (state, action) => {
+      .addCase(fetchPopularBooks.rejected, (state, action) => {
         state.loading = false;
         state.error = "Error fetching thriller books. Please try again later.";
         console.error("Error fetching thriller books:", action.error);
       })
-      .addCase(fetchAdventureBooks.pending, (state) => {
+      .addCase(fetchBestBooks.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchAdventureBooks.fulfilled, (state, action) => {
+      .addCase(fetchBestBooks.fulfilled, (state, action) => {
         state.loading = false;
-        state.AdventureBooks = action.payload.items.map((item) => ({
-          id: item.id,
-          title: item.volumeInfo.title,
-          categories: item.volumeInfo.categories,
-          authors: item.volumeInfo.authors,
-          description: item.volumeInfo.description,
-          thumbnail: item.volumeInfo.imageLinks.thumbnail,
-        }));
+        if (state.bestBooks) {
+          state.bestBooks = action.payload?.items?.map((item) => ({
+            id: item.id,
+            title: item.volumeInfo.title,
+            categories: item.volumeInfo.categories,
+            authors: item.volumeInfo.authors,
+            description: item.volumeInfo.description,
+            thumbnail: item.volumeInfo.imageLinks?.thumbnail,
+          }));
+        } else {
+          state.bestBooks = [];
+        }
       })
-      .addCase(fetchAdventureBooks.rejected, (state, action) => {
+      .addCase(fetchBestBooks.rejected, (state, action) => {
         state.loading = false;
         state.error = "Error fetching adventure books. Please try again later.";
         console.error("Error fetching adventure books:", action.error);

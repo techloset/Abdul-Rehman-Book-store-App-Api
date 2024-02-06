@@ -1,20 +1,19 @@
-// Slider.tsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import arrow from "../../../assets/images/arrow-right.png";
-import { useAppDispatch, useAppSelector } from "../../../store/storeHook";
-import { fetchThrillerBooks } from "../../../store/reducer/BookReducer";
+import arrow from "../../assets/images/arrowRight.png";
+import { useAppDispatch, useAppSelector } from "../../store/storeHook";
+import { fetchPopularBooks } from "../../store/reducer/BookReducer";
 import { Link } from "react-router-dom";
 
 const SliderComponent: React.FC = () => {
   const sliderRef = React.createRef<Slider>();
   const dispatch = useAppDispatch();
-  const thrillerBooks = useAppSelector((state) => state.book.thrillerBooks);
+  const popularBooks = useAppSelector((state) => state.book.popularBooks);
 
   useEffect(() => {
-    dispatch(fetchThrillerBooks());
+    dispatch(fetchPopularBooks());
   }, []);
 
   const settings = {
@@ -71,28 +70,27 @@ const SliderComponent: React.FC = () => {
         <button onClick={handleNext} className="focus:outline-none">
           <img
             src={arrow}
-            alt="Previous"
-            className="border-2 border-white p-3 rounded-full rotate-180 relative    md:top-0 md:right-0 top-96 right-[80px] mx-2 "
+            alt="Next"
+            className="border-2 border-white p-3 cursor-pointer rounded-full rotate-180 relative    md:top-0 md:right-0 top-96 right-[80px] mx-2 "
           />
         </button>
         <button onClick={handlePrev} className="focus:outline-none ">
           <img
             src={arrow}
             alt="Previous "
-            className="border-2 border-white p-3 rounded-full relative md:bottom-9 md:top-0 md:right-0 top-96 right-[80px]  "
+            className="border-2 border-white p-3 cursor-pointer rounded-full relative md:bottom-9 md:top-0 md:right-0 top-96 right-[80px]  "
           />
         </button>
       </div>
-      <Slider ref={sliderRef} {...settings}  >
-        {thrillerBooks.map((book, index) => (
+      <Slider ref={sliderRef} {...settings}>
+        {popularBooks.map((book, index) => (
           <div key={index}>
-            <Link to={`/bookDetail/${book.id}`}>
-            <img
-            
-              src={book.thumbnail}
-              alt={`Slide ${index + 1}`}
-              className="w-[226px] h-[326px] rounded-lg"
-            />
+            <Link to={`/book/${book.id}`}>
+              <img
+                src={book.thumbnail}
+                alt={`Slide ${index + 1}`}
+                className="w-[226px] h-[326px] cursor-pointer rounded-lg"
+              />
             </Link>
           </div>
         ))}

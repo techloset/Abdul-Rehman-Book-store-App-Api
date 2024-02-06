@@ -1,5 +1,5 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import {  createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import instance from "../../utilites/Instance";
 
 interface BookState {
   searchBooks: {
@@ -34,13 +34,15 @@ interface ApiResponse {
   }[];
 }
 
+const apiKey = process.env.REACT_APP_API_KEY;
+
 export const fetchSearchBooks = createAsyncThunk<ApiResponse, string>(
   "SearchBooksOption/fetchSearchBooksOption",
   async (search) => {
     if (search) {
       try {
-        const response = await axios.get(
-          `https://www.googleapis.com/books/v1/volumes?q=${search}&key=AIzaSyCEUEhL5hbgRHbC3Gtp4bugkT--o_OCHVM&maxResults=10`
+        const response = await instance(
+          `volumes?q=${search}&key=${apiKey}&maxResults=40`
         );
         return response.data;
       } catch (error) {
@@ -60,14 +62,18 @@ export const SearchReducer = createSlice({
         state.error = null;
       })
       .addCase(fetchSearchBooks.fulfilled, (state, action) => {
-        state.searchBooks = action.payload.items.map((item) => ({
-          id: item.id||"",
-          title: item.volumeInfo.title||"",
-          categories: item.volumeInfo.categories||"",
-          description: item.volumeInfo.description||"",
-          thumbnail: item.volumeInfo.imageLinks.thumbnail||"",
-          authors: item.volumeInfo.authors||"",
-        }));
+        if (state.searchBooks) {
+          state.searchBooks = action.payload?.items?.map((item) => ({
+            id: item.id || "",
+            title: item.volumeInfo.title || "",
+            categories: item.volumeInfo.categories || "",
+            description: item.volumeInfo.description || "",
+            thumbnail: item.volumeInfo.imageLinks?.thumbnail || "",
+            authors: item.volumeInfo.authors || "",
+          }));
+        } else {
+          state.searchBooks = [];
+        }
         state.loading = false;
       })
       .addCase(fetchSearchBooks.rejected, (state, action) => {
