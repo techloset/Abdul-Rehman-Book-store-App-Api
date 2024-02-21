@@ -33,6 +33,15 @@ const SliderComponent: React.FC = () => {
         },
       },
       {
+        breakpoint: 1214,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
         breakpoint: 786,
         settings: {
           slidesToShow: 2,
@@ -63,7 +72,7 @@ const SliderComponent: React.FC = () => {
 
   return (
     <div className="w-[250px]   sm:w-[500px] md:w-[800px] lg:w-[1200px] text-center sm:text-start">
-      <h1 className="text-white text-3xl  font-bold font-['Hanken Grotesk'] mt-6 ">
+      <h1 className="text-white text-3xl  font-bold font-hanken mt-6 ">
         Related Books
       </h1>
       <div className="flex justify-end my-4">
@@ -89,7 +98,7 @@ const SliderComponent: React.FC = () => {
               <img
                 src={book.thumbnail}
                 alt={`Slide ${index + 1}`}
-                className="w-[226px] h-[326px] cursor-pointer rounded-lg"
+                className="w-[204px] h-[298px] cursor-pointer rounded-lg"
               />
             </Link>
           </div>

@@ -9,7 +9,7 @@ export default function Footer() {
           <img src={heartLogo} alt="heart" />
         </div>
         <div>
-          <p className="text-center py-2 text-base text-slate-500 font-semibold">
+          <p className="text-center py-2 text-base text-[#5A7184] font-semibold">
             Copyright &copy; {year} . Crafted with Love
           </p>
         </div>

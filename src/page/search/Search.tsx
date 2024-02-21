@@ -1,4 +1,3 @@
-
 import heartLogo2 from "../../assets/images/heart1.png";
 import { Link } from "react-router-dom";
 import useSearch from "../../hooks/useSearch";
@@ -18,7 +17,7 @@ export default function Search() {
   return (
     <>
       <div className="flex flex-col items-center">
-        <h1 className="text-blue-950 py-3 text-5xl font-bold font-hanken italic leading-[60px] tracking-tight">
+        <h1 className="text-[#183B56] py-3 text-5xl font-bold font-hanken italic leading-[60px] tracking-tight">
           Search Books
         </h1>
         <div className=" w-[400px] md:w-[641px] h-[72px]  bg-neutral-100 rounded-lg px-6">
@@ -33,11 +32,14 @@ export default function Search() {
       </div>
 
       <div className="md:mx-20">
+          {searches && (
         <div>
-          <h1 className="text-blue-950 font-hanken italic text-[32px] font-bold  leading-10 tracking-tight my-6">
-            Search Results
-          </h1>
+            <h1 className="text-[#183B56] font-hanken italic text-[32px] font-bold  leading-10 tracking-tight my-6">
+              Search Results
+            </h1>
         </div>
+        
+          )}
 
         {error ? (
           <p>No Book Available</p>
@@ -48,51 +50,53 @@ export default function Search() {
             {searches &&
               searches?.slice(0, showMore).map((book, i) => (
                 <div
-                  key={i}
-                  className="w-[358px] xl:max-w-[358px] lg:max-w-[330px] md:max-w-[330px] mb-2 mr-2 h-[260px] rounded-lg border-2 border-gray-100 p-2 flex "
-                >
-                  <Link to={`/book/${book.id}`}>
-                    <img
-                      src={book.thumbnail}
-                      alt="thumail"
-                      className="w-40 h-[238px] cursor-pointer bg-red-400 rounded-md "
-                    />
-                  </Link>
-                  <div className="ml-5 ">
-                    <h1 className="text-blue-950 py-2 text-[22px] font-semibold font-hanken italic leading-loose tracking-tight">
-                      {book.title && book.title.length > 10
-                        ? book.title.slice(0, 10) + "..."
-                        : book.title}
-                    </h1>
-                    <span className="text-blue-950 mt-5 py-2 text-base font-normal font-['Open Sans']">
-                      {book.categories?.length > 0 &&
-                      book.categories?.[0] &&
-                      book.categories?.[0].length > 10
-                        ? book.categories?.[0].slice(0, 10) + "..."
-                        : book.categories?.[0]}
-                    </span>
-                    <span className="block mt-6 text-blue-700 text-xl font-bold font-['Hanken Grotesk'] leading-normal tracking-tight">
-                      N/A
-                    </span>
+                    key={book.id}
+                    className="w-[270px] h-[312px] md:h-[260px] md:w-[358px]  m-5 md:mt-0   rounded-lg border-2 border-[#ECEEF2] p-2 flex flex-col md:flex-row md:text-start  md:items-start items-center text-center "
+                  >
+                    <Link to={`/book/${book.id}`}>
+                      <img
+                        src={book.thumbnail}
+                        alt="thumnail"
+                        className="w-[160px] h-[238px] cursor-pointer md:h-[238px]  rounded-md relative md:left-0 md:bottom-0 bottom-20 left-2  "
+                      />
+                    </Link>
+                    <div className="ml-5 relative bottom-20 md:bottom-0">
+                      <h1 className="text-[#183B56] h-[64px]  md:py-2 cursor-pointer text-[22px] font-semibold font-hanken italic leading-[32px] tracking-tight">
+                        {book.title && book.title.length > 10
+                          ? book.title.slice(0, 10) + "..."
+                          : book.title}
+                      </h1>
+                      <span className="text-[#183B56] md:mt-5 md:py-2 font-sans  font-normal text-[16px] leading-[21.79px] ">
+                        {book.categories
+                          ? book.categories?.length > 0 &&
+                            book.categories?.[0] &&
+                            book.categories?.[0].length > 10
+                            ? book.categories?.[0].slice(0, 10) + "..."
+                            : book.categories?.[0]
+                          : "No Category"}
+                      </span>
+                      <span className="block md:mt-6 text-[#1565D8] text-[20px] font-bold font-hanken italic leading-[24px] tracking-tight">
+                        N/A
+                      </span>
 
-                    <button className="mt-4 text-white text-sm font-semibold font-['Open Sans'] leading-tight bg-blue-950 rounded-3xl px-4 py-3">
-                      Buy Now
-                    </button>
-                    <img
-                      src={heartLogo2}
-                      alt="heart"
-                      width={20}
-                      className="inline mx-5 cursor-pointer"
-                    />
+                      <button className="md:mt-12 mt-3 text-white   text-[14px] cursor-pointer font-semibold font-sans leading-[20px] bg-[#183B56] rounded-3xl px-4 py-3">
+                        Buy Now
+                      </button>
+                      <img
+                        src={heartLogo2}
+                        alt="Heart"
+                        width={20}
+                        className="inline mx-5 cursor-pointer"
+                      />
+                    </div>
                   </div>
-                </div>
               ))}
           </div>
         )}
         {searches && searches.length > 9 && (
           <button
             onClick={handleShowMore}
-            className="w-[362px] h-[72px] font-bold bg-blue-300 text-blue-700 rounded-lg"
+            className="w-[362px] h-[72px] font-bold bg-blue-300 text-[#1565D8] rounded-lg"
           >
             {showMore === 9 ? "More" : "Less"}
           </button>

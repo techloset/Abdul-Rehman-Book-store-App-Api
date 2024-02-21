@@ -2,6 +2,83 @@ import mainLogo from "../../assets/images/mainLogo.png";
 import circle from "../../assets/images/Layer.png";
 import { Link } from "react-router-dom";
 export default function DetailFooter() {
+  const productLink = [
+    {
+      name: "Landing Page",
+      link: "/",
+    },
+    {
+      name: "Features",
+      link: "/",
+    },
+    {
+      name: "Documentation",
+      link: "/",
+    },
+    {
+      name: "Referral Program",
+      link: "/",
+    },
+    {
+      name: "Pricing",
+      link: "/",
+    },
+  ];
+  const servicesLinks = [
+    {
+      name: "Documentation",
+      link: "/",
+    },
+    {
+      name: "Design",
+      link: "/",
+    },
+    {
+      name: "Themes",
+      link: "/",
+    },
+    {
+      name: "Illustrations",
+      link: "/",
+    },
+    {
+      name: "UI Kit",
+      link: "/",
+    },
+  ];
+  const companyLinks = [
+    {
+      name: "About",
+      link: "/",
+    },
+    {
+      name: "Terms",
+      link: "/",
+    },
+    {
+      name: "Privacy Policy",
+      link: "/",
+    },
+    {
+      name: "Careers",
+      link: "/",
+    },
+  ];
+
+  const moreLinks =[
+    {
+      name: "Documentation",
+      link: "/",
+    },
+    {
+      name: "License",
+      link: "/",
+    },
+    {
+      name: "Change Log",
+      link: "/",
+    },
+  ]
   return (
     <>
       <div className="mx-16">
@@ -10,7 +87,7 @@ export default function DetailFooter() {
             <div className="flex justify-center sm:justify-start">
               <img src={mainLogo} alt="" width={80} />
             </div>
-            <p className="py-8 text-slate-500">
+            <p className="py-8 text-[#5A7184]">
               Build a modern and creative
               <br /> website with crealand
             </p>
@@ -23,128 +100,64 @@ export default function DetailFooter() {
           </div>
           <div className="grid grid-cols-2 grid-flow-row gap-14    md:grid-cols-4 md:grid-flow-row sm:grid-cols-2 sm:grid-flow-row sm:gap-12 sm:ml-32">
             <div className="flex flex-col">
-              <h1 className="text-blue-950 text-lg font-bold font-['OpenSans']">
+              <h1 className="text-[#183B56] text-lg font-bold font-sans">
                 Product
               </h1>
-              <Link
-                to={"/"}
-                className="text-blue-950 text-base font-normal font-['OpenSans'] py-1"
-              >
-                Landing Page
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 text-base font-normal font-['OpenSans'] py-1"
-              >
-                Features
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 text-base font-normal font-['OpenSans'] py-1"
-              >
-                Documentation
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 text-base font-normal font-['OpenSans'] py-1"
-              >
-                Referral Program
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                Pricing
-              </Link>
+              {productLink.map((productLink) => {
+                return (
+                  <Link
+                    to={productLink.link}
+                    className="text-[#183B56] text-[16px]  leading-[21.79px] font-normal font-sans py-1"
+                  >
+                    {productLink.name}
+                  </Link>
+                );
+              })}
             </div>
             <div className="flex flex-col">
-              <h1 className="text-blue-950 py-1 text-lg font-bold font-['OpenSans']">
+              <h1 className="text-[#183B56] text-[16px] py-1 leading-[21.79px] font-bold font-sans">
                 Services
               </h1>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                Documentation
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                Design
-              </Link>
-
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                Themes
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                Illustrations
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                UI Kit
-              </Link>
+              {servicesLinks.map((servicesLink) => {
+                return (
+                  <Link
+                    to={servicesLink.link}
+                    className="text-[#183B56] text-[16px]  leading-[21.79px] font-normal font-sans py-1"
+                  >
+                    {servicesLink.name}
+                  </Link>
+                );
+              })}
             </div>
             <div className="flex flex-col">
-              <h1 className="text-blue-950 py-1 text-lg font-bold font-['OpenSans']">
+              <h1 className="text-[#183B56] py-1 text-lg font-bold font-sans">
                 Company
               </h1>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                About
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                Terms
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                Careers
-              </Link>
+              {companyLinks.map((companyLink) => {
+                return (
+                  <Link
+                    to={companyLink.link}
+                    className="text-[#183B56] py-1 text-[16px]  leading-[21.79px] font-normal font-sans"
+                  >
+                    {companyLink.name}
+                  </Link>
+                );
+              })}
             </div>
             <div className="flex flex-col">
-              <h1 className="text-blue-950 py-1 text-lg font-bold font-['OpenSans']">
+              <h1 className="text-[#183B56] py-1 text-lg font-bold font-sans">
                 More
               </h1>
-
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                Documentation
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                License
-              </Link>
-              <Link
-                to={"/"}
-                className="text-blue-950 py-1 text-base font-normal font-['OpenSans']"
-              >
-                Change Log
-              </Link>
+              {moreLinks.map((moreLink) => {
+                return (
+                  <Link
+                    to={moreLink.link}
+                    className="text-[#183B56] py-1 text-base font-normal font-sans"
+                  >
+                    {moreLink.name}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>

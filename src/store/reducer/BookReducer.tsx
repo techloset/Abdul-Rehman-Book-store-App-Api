@@ -66,7 +66,7 @@ export const fetchBestBooks = createAsyncThunk<ApiResponse>(
   async () => {
     try {
       const response = await instance(
-        `volumes?q=thriller&key=${apiKey}&maxResults=3`
+        `volumes?q=thriller&key=${apiKey}&maxResults=4`
       );
       return response.data;
     } catch (error) {

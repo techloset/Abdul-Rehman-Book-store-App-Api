@@ -9,6 +9,29 @@ export default function Header() {
     setMenuOpen(!menuOpen);
   };
 
+  const headerLink = [
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "Landings",
+      link: "/",
+    },
+    {
+      name: "Pages",
+      link: "/",
+    },
+    {
+      name: "Docs",
+      link: "/",
+    },
+    {
+      name: "Help",
+      link: "/",
+    },
+  ];
+
   return (
     <div className="flex justify-center">
       <nav className="flex justify-between  py-6 w-[1140px] m-5">
@@ -26,55 +49,23 @@ export default function Header() {
           </div>
         </div>
         <ul className={`sm:flex ${menuOpen ? "flex list-none" : "hidden"}`}>
-          <li>
-            <Link
-              to="/"
-              className="block no-underline p-2 mx-2 "
-              onClick={handleToggleMenu}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/"
-              className="block no-underline p-2 mx-2"
-              onClick={handleToggleMenu}
-            >
-              Landings
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/"
-              className="block no-underline p-2 mx-2"
-              onClick={handleToggleMenu}
-            >
-              Pages
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/"
-              className="block no-underline p-2 mx-2"
-              onClick={handleToggleMenu}
-            >
-              Docs
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/"
-              className="block no-underline p-2 mx-2"
-              onClick={handleToggleMenu}
-            >
-              Help
-            </Link>
-          </li>
+          {headerLink.map((menu) => {
+            return (
+              <li key={menu.name}>
+                <Link
+                  to={menu.link}
+                  className="block no-underline p-2 mx-2 "
+                  onClick={handleToggleMenu}
+                >
+                  {menu.name}
+                </Link>
+              </li>
+            );
+          })}
           <li>
             <Link
               to="/search"
-              className="block no-underline rounded-md py-1 mt-1  text-blue-700 border-2 border-blue-700 px-5"
+              className="block no-underline rounded-md py-1 mt-1  text-[#1565D8] border-2 border-[#1565D8] px-5"
               onClick={handleToggleMenu}
             >
               Search
