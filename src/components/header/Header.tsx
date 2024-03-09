@@ -54,7 +54,7 @@ export default function Header() {
               <li key={menu.name}>
                 <Link
                   to={menu.link}
-                  className="block no-underline p-2 mx-2 "
+                  className="block no-underline p-2 mx-2 font-sans font-semibold text-[16px] text-[#183B56]"
                   onClick={handleToggleMenu}
                 >
                   {menu.name}

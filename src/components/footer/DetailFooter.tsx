@@ -81,7 +81,7 @@ export default function DetailFooter() {
   ]
   return (
     <>
-      <div className="mx-16">
+      <div className="lg:mx-[106px] max-m-[1140px]">
         <div className="flex flex-col-reverse sm:flex-row   m-10">
           <div className=" text-center sm:text-left">
             <div className="flex justify-center sm:justify-start">
@@ -100,14 +100,14 @@ export default function DetailFooter() {
           </div>
           <div className="grid grid-cols-2 grid-flow-row gap-14    md:grid-cols-4 md:grid-flow-row sm:grid-cols-2 sm:grid-flow-row sm:gap-12 sm:ml-32">
             <div className="flex flex-col">
-              <h1 className="text-[#183B56] text-lg font-bold font-sans">
+              <h1 className="text-[#183B56] mb-4 text-lg leading-[24.79px] font-bold font-sans">
                 Product
               </h1>
               {productLink.map((productLink) => {
                 return (
                   <Link
                     to={productLink.link}
-                    className="text-[#183B56] text-[16px]  leading-[21.79px] font-normal font-sans py-1"
+                    className="text-[#183B56] mb-4 text-[16px]   leading-[21.79px] font-normal font-sans py-1"
                   >
                     {productLink.name}
                   </Link>
@@ -115,14 +115,14 @@ export default function DetailFooter() {
               })}
             </div>
             <div className="flex flex-col">
-              <h1 className="text-[#183B56] text-[16px] py-1 leading-[21.79px] font-bold font-sans">
+              <h1 className="text-[#183B56] mb-4 text-[16px] py-1 leading-[24.79px] font-bold font-sans">
                 Services
               </h1>
               {servicesLinks.map((servicesLink) => {
                 return (
                   <Link
                     to={servicesLink.link}
-                    className="text-[#183B56] text-[16px]  leading-[21.79px] font-normal font-sans py-1"
+                    className="text-[#183B56] mb-4 text-[16px]  leading-[24.79px] font-normal font-sans py-1"
                   >
                     {servicesLink.name}
                   </Link>
@@ -130,14 +130,14 @@ export default function DetailFooter() {
               })}
             </div>
             <div className="flex flex-col">
-              <h1 className="text-[#183B56] py-1 text-lg font-bold font-sans">
+              <h1 className="text-[#183B56] mb-4 py-1 text-lg font-bold font-sans leading-[24.79px]">
                 Company
               </h1>
               {companyLinks.map((companyLink) => {
                 return (
                   <Link
                     to={companyLink.link}
-                    className="text-[#183B56] py-1 text-[16px]  leading-[21.79px] font-normal font-sans"
+                    className="text-[#183B56] mb-4 py-1 text-[16px]  leading-[21.79px] font-normal font-sans"
                   >
                     {companyLink.name}
                   </Link>
@@ -145,14 +145,14 @@ export default function DetailFooter() {
               })}
             </div>
             <div className="flex flex-col">
-              <h1 className="text-[#183B56] py-1 text-lg font-bold font-sans">
+              <h1 className="text-[#183B56] mb-4 py-1 text-lg font-bold font-sans">
                 More
               </h1>
               {moreLinks.map((moreLink) => {
                 return (
                   <Link
                     to={moreLink.link}
-                    className="text-[#183B56] py-1 text-base font-normal font-sans"
+                    className="text-[#183B56] mb-4 py-1 text-base font-normal font-sans"
                   >
                     {moreLink.name}
                   </Link>

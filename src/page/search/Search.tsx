@@ -17,10 +17,10 @@ export default function Search() {
   return (
     <>
       <div className="flex flex-col items-center">
-        <h1 className="text-[#183B56] py-3 text-5xl font-bold font-hanken italic leading-[60px] tracking-tight">
+        <h1 className="text-[#183B56] mt-[195px] py-3 text-5xl font-bold font-hanken italic leading-[60px] tracking-tight">
           Search Books
         </h1>
-        <div className=" w-[400px] md:w-[641px] h-[72px]  bg-neutral-100 rounded-lg px-6">
+        <div className=" w-[400px] md:w-[641px] h-[72px] mt-[64px]  bg-neutral-100 rounded-lg px-6">
           <input
             type="text"
             value={search}
@@ -31,7 +31,7 @@ export default function Search() {
         </div>
       </div>
 
-      <div className="md:mx-20">
+      <div className="md:mx-20 mt-[180px]">
           {searches && (
         <div>
             <h1 className="text-[#183B56] font-hanken italic text-[32px] font-bold  leading-10 tracking-tight my-6">
@@ -57,10 +57,10 @@ export default function Search() {
                       <img
                         src={book.thumbnail}
                         alt="thumnail"
-                        className="w-[160px] h-[238px] cursor-pointer md:h-[238px]  rounded-md relative md:left-0 md:bottom-0 bottom-20 left-2  "
+                        className="w-[92.16px] h-[137px] md:w-[160px] cursor-pointer md:h-[238px]  rounded-md relative md:left-0 md:bottom-0 bottom-10 left-2  "
                       />
                     </Link>
-                    <div className="ml-5 relative bottom-20 md:bottom-0">
+                    <div className="ml-5 relative bottom-8 md:bottom-0">
                       <h1 className="text-[#183B56] h-[64px]  md:py-2 cursor-pointer text-[22px] font-semibold font-hanken italic leading-[32px] tracking-tight">
                         {book.title && book.title.length > 10
                           ? book.title.slice(0, 10) + "..."

@@ -8,12 +8,9 @@ main {
     flex: 1 0 auto;
 }
 
-
-
 .active{
     background-color: #1d4ed8;
 }
-
 
 @media (max-width: 640px) {
      nav .menu {

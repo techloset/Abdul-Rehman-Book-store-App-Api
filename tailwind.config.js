@@ -4,11 +4,12 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      'hanken': ["Hanken Grotesk"],
-      'sans': ["Open Sans"]
+      hanken: ["Hanken Grotesk"],
+      sans: ["Open Sans"],
     },
-
+    backgroundImage: {
+      "ovalImage": "url('/src/assets/images/book.png')",
+    },
   },
   plugins: [],
-}
-
+};
