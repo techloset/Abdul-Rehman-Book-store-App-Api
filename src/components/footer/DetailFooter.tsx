@@ -81,7 +81,7 @@ export default function DetailFooter() {
   ]
   return (
     <>
-      <div className="lg:mx-[106px] max-m-[1140px]">
+      <div className="flex justify-center md:mx-[106px] w-[1140px]">
         <div className="flex flex-col-reverse sm:flex-row   m-10">
           <div className=" text-center sm:text-left">
             <div className="flex justify-center sm:justify-start">
