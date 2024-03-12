@@ -234,7 +234,7 @@ export default function Home() {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-          className="flex flex-col lg:flex-row  justify-center items-center lg:justify-between w-[1140px] h-[236px]  md:h-[200px]  bg-[#1565d8] rounded-xl p-8"
+          className="flex flex-col lg:flex-row  justify-center items-center lg:justify-between w-[1140px] h-[236px]    bg-[#1565d8] rounded-xl p-8"
         >
           <span className="text-white text-[28px] md:text-[36px] font-bold font-hanken italic leading-[36px] md:leading-[48px] tracking-tight">
             Be the First to know
